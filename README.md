@@ -15,10 +15,11 @@ Para correr el proyecto seleccionar:
 Restaurar base de datos (Dentro de proyecto MainData)
 
 Cambiar el string de conexión
-- MainData
-  - SINERGIAContext.cs
+- API.TEST
+  - appsettigs.js
+    - DefaultConnection (inserte su stringConnection)
   
   <code>
-    optionsBuilder.UseSqlServer("Server=RAIDEN-OF-STEAL;Database=SINERGIA;Trusted_Connection=True;");
+    "DefaultConnection": "Server=localhost;Database=SINERGIA;Trusted_Connection=True;MultipleActiveResultSets=true",
   </code>
   
