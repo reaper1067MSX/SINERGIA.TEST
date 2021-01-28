@@ -2,7 +2,11 @@
 TEST
 
 v0.1
-Descripción de proyecto
+Descripción de proyecto:
+- API.TEST (API)
+- TEST (FRONT)
+- Common (Libreria de clases compartidas del proyecto)
+- MainData (Libreria de clases para modelos de base de datos)
 
 Para correr el proyecto seleccionar:
 - API.TEST
@@ -11,10 +15,14 @@ Para correr el proyecto seleccionar:
 Restaurar base de datos (Dentro de proyecto MainData)
 
 Cambiar el string de conexión
-- MainData
-  - SINERGIAContext.cs
+- API.TEST
+  - appsettigs.js
+    - DefaultConnection (inserte su stringConnection)
   
   <code>
-    optionsBuilder.UseSqlServer("Server=RAIDEN-OF-STEAL;Database=SINERGIA;Trusted_Connection=True;");
+    "DefaultConnection": "Server=localhost;Database=SINERGIA;Trusted_Connection=True;MultipleActiveResultSets=true",
   </code>
+  
+Postman
+- https://www.getpostman.com/collections/c5896fb2d268b5a4937d  
   
