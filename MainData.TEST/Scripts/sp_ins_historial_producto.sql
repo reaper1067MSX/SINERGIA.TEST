@@ -10,20 +10,22 @@ GO
 
 CREATE TRIGGER sp_ins_producto_historico  
 ON Producto  
-AFTER UPDATE   
+FOR UPDATE   
 AS
 	Begin
 		SET NOCOUNT ON;
-		
-		DECLARE @id nvarchar(MAX), @descripcion nvarchar(100), @idProveedor nvarchar(MAX), @idCategoria nvarchar(MAX), @idMarca nvarchar(MAX), @estado nvarchar(MAX), @precio decimal(18,2), @idMedidas nvarchar(MAX)
+
+		DECLARE @id uniqueidentifier, @descripcion nvarchar(100), @idProveedor uniqueidentifier, @idCategoria uniqueidentifier, @idMarca uniqueidentifier, @estado char(1), @precio decimal(18,2), @idMedidas uniqueidentifier
 
 		SELECT @id = i.id , @descripcion = i.descripcion, @idProveedor = i.idProveedor, @idCategoria = i.idCategoria, @idMarca = i.idMarca, @estado = i.estado, @precio = i.precio, @idMedidas = i.idMedidas
 		FROM inserted i
 
 		INSERT INTO SINERGIA.dbo.Historico_Producto(idProducto, descripcion, idProveedor, idCategoria, idMarca, estado, precio, idMedidas, ultimaModificacion) 
-		VALUES(@id,@descripcion,@idProveedor,@idCategoria,@idMarca, @estado, @precio, @idMedidas, GETDATE())
+		VALUES(CONVERT(UNIQUEIDENTIFIER, @id)
+		,@descripcion,CONVERT(UNIQUEIDENTIFIER, @idProveedor),CONVERT(UNIQUEIDENTIFIER, @idCategoria),CONVERT(UNIQUEIDENTIFIER, @idMarca), @estado, @precio, CONVERT(UNIQUEIDENTIFIER, @idMedidas), GETDATE())
 
 	End
 GO  
 
 
+DROP TRIGGER sp_ins_producto_historico  
