@@ -2,7 +2,11 @@
 TEST
 
 v0.1
-Descripción de proyecto
+Descripción de proyecto:
+- API.TEST (API)
+- TEST (FRONT)
+- Common (Libreria de clases compartidas del proyecto)
+- MainData (Libreria de clases para modelos de base de datos)
 
 Para correr el proyecto seleccionar:
 - API.TEST
