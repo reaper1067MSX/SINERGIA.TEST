@@ -1,8 +1,10 @@
 using AutoMapper;
+using MainData.TEST;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,16 +18,29 @@ namespace API.TEST
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            _configuration = configuration;
+            _environment = env;
         }
 
-        public IConfiguration Configuration { get; }
+        public IWebHostEnvironment _environment { get; set; }
+        public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+            string server = _configuration.GetConnectionString("SERVER");
+
+            if (!string.IsNullOrEmpty(server))
+            {
+                connectionString = string.Format(connectionString, server);
+            }
+
+            services.AddDbContext<SINERGIAContext>(options => options.UseSqlServer(connectionString));
+            
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }

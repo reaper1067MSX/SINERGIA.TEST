@@ -13,6 +13,7 @@ namespace API.TEST.Models.Mapper
         public MpperProfile()
         {
             CreateMap<Producto, ProductoVM>().ReverseMap();
+            CreateMap<Proveedor, ProveedorVM>().ReverseMap();
         }
     }
 }

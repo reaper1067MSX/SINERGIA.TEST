@@ -49,6 +49,8 @@ UPDATE Producto SET estado = 'A' where id = '63F9941B-8179-4444-B166-76C1629E7F4
 SELECT * FROM Historico_Producto
 
 
+exec sp_sel_Proveedor_by_Id '28C7E3C1-2090-4631-B50F-0A30AE9D9922'
 
 
+sp_helptext sp_sel_Proveedor_by_Id
 

@@ -8,7 +8,7 @@ GO
 -- =============================================
 CREATE PROCEDURE sp_sel_Proveedor_by_Id
 	-- Add the parameters for the stored procedure here
-	@i_idProveedor nvarchar(MAX)
+	@i_idProveedor uniqueidentifier
 AS
 BEGIN
 	SELECT PV.*

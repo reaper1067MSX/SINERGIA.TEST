@@ -33,7 +33,8 @@ namespace API.TEST.Controllers
         {
             try
             {
-                var response = _context.Producto.FromSqlRaw("sp_sel_producto_by_Id @p0", id).Single();
+                //var response = _context.Producto.FromSqlRaw("sp_sel_producto_by_Id @p0", id).Single();
+                var response = _context.Proveedor.FromSqlInterpolated($"SELECT * FROM PRODUCTO WHERE ID={id}").Single();
 
                 return Ok(response);
             }
@@ -55,7 +56,7 @@ namespace API.TEST.Controllers
                     return BadRequest("Modelo inválido");
                 }
 
-                model.Id = new Guid().ToString();
+                model.Id = Guid.NewGuid().ToString();
 
                 Producto producto = new Producto();
                 producto = _mapper.Map(model, producto);
@@ -65,7 +66,7 @@ namespace API.TEST.Controllers
 
                 transaction.Commit();
 
-                return Ok();
+                return Ok(producto);
             }
             catch (Exception ex)
             {
