@@ -23,3 +23,6 @@ Cambiar el string de conexión
     "DefaultConnection": "Server=localhost;Database=SINERGIA;Trusted_Connection=True;MultipleActiveResultSets=true",
   </code>
   
+Postman
+- https://www.getpostman.com/collections/c5896fb2d268b5a4937d  
+  
